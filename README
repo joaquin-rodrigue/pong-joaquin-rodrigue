@@ -1,0 +1,60 @@
+Pong Project
+
+	Author: Joaquin Rodriguez
+	
+# Summary
+
+This project is a re-creation of the arcade game Pong using Java.
+
+# Compile & Run
+
+Currently, the project works best in the default screen resolution. The game slows down a lot in
+higher resolutions because the speeds don't scale properly yet.
+
+# Discussion
+
+We had an assignment in class this week called "Bouncy Ball" where you have to program a ball moving
+around the screen. I decided to further take this code and build the game Pong.
+
+This was not required to do but I decided to build Pong either way because its fun. I also had not
+much else to do. The code from BouncyBall.java was the biggest foundation, from there all that 
+needed to be added was the paddles, score, and the AI to handle the other paddle.
+
+Let's start with the paddles: Developing the logic to make the paddles bounce the ball away took
+some time because I failed to realize what dimensions are which for a while. I also didn't calculate
+the size of the paddles properly at first, that meaning they are an infinite wall of everything
+above them. Otherwise, there wasn't many issues there.
+
+Secondly, the score was really easy because I snatched code from a prior project I worked on to draw
+it and the winning logic was simple. Now for part 3: 
+
+# Testing
+
+Once the mostly functional game was around, I had some bugs I still needed to fix. One bug that was
+fun to watch was that the speed of the Pong ball increased and could increase literally forever.
+Not that it was a problem if there was a score limit, but if there was no score limit the ball would
+go through the paddles after around 60 points on either side.
+
+So here's the solution: 1) No constantly increasing speeds for the ball every time a paddle hits the
+ball. 2) Instead, the ball will calculate its speed in a different way. Here's the logic: I want the
+ball to always move at a certain velocity, which isnt too hard, we just have to use some Pythagorean
+theorem in reverse. If x^2 + y^2 = a^2, then we want a^2, which I will have at 25 for now. If we set
+a y value, then x needs to be calculated based on y.
+	Solve for x and we have our equation:
+	x^2 + y^2 = a^2
+	x^2 = a^2 - y^2
+	x = sqrt(a^2 - y^2)
+	So if y is 4, and a is 5, then x needs to be 3.
+
+Another fun problem was the ball getting stuck in the paddle until it moved, which also was fun to
+watch but wasn't a bug i wanted to keep. This was a simple fix, just check which direction the ball
+is moving and don't hit it if its going away from you.
+
+# Sources Used
+
+Original BouncyBall.java Code		CS121 Instructors
+									mvail 
+									These were the authors of the file.
+									
+Knowledge of MouseInfo				Stack Overflow response
+									https://stackoverflow.com/questions/1439022/get-mouse-position
